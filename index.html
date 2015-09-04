@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="mySudokuApp">
+<head>
+	<link rel="stylesheet" type="text/css" href="pageStyles.css">
+	<link rel="stylesheet" type="text/css" href="animate.css">
+	<script src="angular.min.js"></script>
+	<script src="\js\app.js"></script>
+	<script src="\js\directives.js"></script>
+	<script src="\js\controller.js"></script>
+	<script src="angular-animate.js"></script>
+
+	
+	<!-- jQuery UI stuff -->
+	<link rel="stylesheet" href="jquery-ui-1.11.4/jquery-ui.min.css">
+	<script src="jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+	<script src="jquery-ui-1.11.4/jquery-ui.min.js"></script>
+	<!-- jQuery UI stuff -->
+</head>
+
+<body ng-controller="mySudokuCtrl">
+
+	<div class="titleDiv">
+		<div class="buttonWrapper">
+			<div ng-class="{'navButton': pageShow != 1 || pageShow != 5, 'selected': pageShow == 1 || pageShow == 5}" ng-click="pageShow = 1"><span><b>Play</b></span></div>
+			<div ng-class="{'navButton': pageShow != 2, 'selected': pageShow == 2}" ng-click="pageShow = 2"><span><b>Learn</b></span></div>
+			<div ng-class="{'navButton': pageShow != 3, 'selected': pageShow == 3}" ng-click="pageShow = 3"><span><b>History</b></span></div>
+			<div ng-class="{'navButton': pageShow != 4, 'selected': pageShow == 4}" ng-click="pageShow = 4"><span><b>About Us</b></span></div>
+		</div>
+	</div>
+	<div id="wrapper" >
+		<div id="contentWrapper">
+			<span ng-show="pageShow == 1">
+			<div class = "textAreaWrapper">
+				<div class="menuTitle">
+					<span><b>Difficulty</b></span>
+				</div>
+				<div class="levelsContainer">
+					<div class="navButton levels easy" ng-click="getPuzzle(1)"><span>Easy</span></div>
+					<div class="navButton levels medium" ng-click="getPuzzle(2)"><span>Medium</span></div>
+					<div class="navButton levels hard" ng-click="getPuzzle(3)"><span>Hard</span></div>
+					<div class="navButton levels evil" ng-click="getPuzzle(4)"><span>Evil</span></div>
+				</div>
+			</div>
+			</span>
+			
+			<span ng-show="pageShow == 5"><game-board board="board"></game-board></span>
+			
+			<span ng-show="pageShow == 2">
+				<div class = "textArea">
+					<span>
+					<b>LEARN</b><br />
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet fermentum fringilla. Aenean ac arcu id diam lacinia tempus sit amet eu nunc. Maecenas lacinia enim erat, sagittis tincidunt mi sodales ac. Sed felis erat, aliquet ultrices rhoncus sed, accumsan a arcu. Sed fringilla vestibulum hendrerit. Quisque blandit nisl dui. Aliquam bibendum in sapien vitae feugiat. Donec a pulvinar enim. Pellentesque pulvinar, nulla eget euismod aliquet, nunc massa cursus tortor, at euismod lacus odio a nibh. Nam quis justo consequat, placerat mi ut, tincidunt ante. Fusce semper euismod libero, et mollis massa pulvinar id. Morbi congue faucibus justo. Integer quam erat, rhoncus et lacus sit amet, tristique congue libero. Vestibulum nec orci cursus, bibendum neque a, tincidunt sem. Sed rutrum quam sed augue luctus pellentesque.
+
+					Etiam commodo quam sed eros bibendum imperdiet. Phasellus at efficitur tortor, vulputate sodales leo. Nulla aliquet quam diam, laoreet maximus ex mattis auctor. Mauris vel felis finibus, malesuada mi fermentum, vehicula eros. Pellentesque malesuada consequat orci ac rhoncus. Morbi ultrices porta metus ac convallis. Maecenas ipsum lectus, imperdiet quis tortor ac, ornare auctor sapien. Proin aliquam est et nulla consectetur auctor. Curabitur vehicula cursus mi. Nulla lacinia molestie quam vel blandit.
+
+					In consequat tincidunt orci, eget bibendum tellus congue ac. Phasellus ac dapibus erat. Donec vitae lacus sit amet ex rhoncus ornare et vel lectus. Nulla efficitur, sapien eu pretium aliquet, magna libero consequat sapien, eget posuere dolor felis nec nibh. Donec varius quis tellus non aliquet. Duis tortor nisi, lobortis et iaculis vitae, ornare ut turpis. Mauris lectus quam, gravida vitae sem id, vestibulum rhoncus risus. In vel volutpat justo, eget feugiat orci. Sed tempor urna in mauris ornare mollis. Proin quis ex dignissim, lobortis sapien sit amet, placerat ex. Morbi vitae lectus sapien. Duis vel tempus ante.
+					</span>
+				</div>
+			</span>
+			
+			<span ng-show="pageShow == 3">
+				<div class = "textArea">
+					<span>
+					<b>HISTORY</b><br />
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet fermentum fringilla. Aenean ac arcu id diam lacinia tempus sit amet eu nunc. Maecenas lacinia enim erat, sagittis tincidunt mi sodales ac. Sed felis erat, aliquet ultrices rhoncus sed, accumsan a arcu. Sed fringilla vestibulum hendrerit. Quisque blandit nisl dui. Aliquam bibendum in sapien vitae feugiat. Donec a pulvinar enim. Pellentesque pulvinar, nulla eget euismod aliquet, nunc massa cursus tortor, at euismod lacus odio a nibh. Nam quis justo consequat, placerat mi ut, tincidunt ante. Fusce semper euismod libero, et mollis massa pulvinar id. Morbi congue faucibus justo. Integer quam erat, rhoncus et lacus sit amet, tristique congue libero. Vestibulum nec orci cursus, bibendum neque a, tincidunt sem. Sed rutrum quam sed augue luctus pellentesque.
+
+					Etiam commodo quam sed eros bibendum imperdiet. Phasellus at efficitur tortor, vulputate sodales leo. Nulla aliquet quam diam, laoreet maximus ex mattis auctor. Mauris vel felis finibus, malesuada mi fermentum, vehicula eros. Pellentesque malesuada consequat orci ac rhoncus. Morbi ultrices porta metus ac convallis. Maecenas ipsum lectus, imperdiet quis tortor ac, ornare auctor sapien. Proin aliquam est et nulla consectetur auctor. Curabitur vehicula cursus mi. Nulla lacinia molestie quam vel blandit.
+
+					In consequat tincidunt orci, eget bibendum tellus congue ac. Phasellus ac dapibus erat. Donec vitae lacus sit amet ex rhoncus ornare et vel lectus. Nulla efficitur, sapien eu pretium aliquet, magna libero consequat sapien, eget posuere dolor felis nec nibh. Donec varius quis tellus non aliquet. Duis tortor nisi, lobortis et iaculis vitae, ornare ut turpis. Mauris lectus quam, gravida vitae sem id, vestibulum rhoncus risus. In vel volutpat justo, eget feugiat orci. Sed tempor urna in mauris ornare mollis. Proin quis ex dignissim, lobortis sapien sit amet, placerat ex. Morbi vitae lectus sapien. Duis vel tempus ante.
+					</span>
+				</div>
+			</span>
+			
+			<span ng-show="pageShow == 4">
+				<div class = "textArea">
+					<span>
+					<b>ABOUT US</b><br />
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet fermentum fringilla. Aenean ac arcu id diam lacinia tempus sit amet eu nunc. Maecenas lacinia enim erat, sagittis tincidunt mi sodales ac. Sed felis erat, aliquet ultrices rhoncus sed, accumsan a arcu. Sed fringilla vestibulum hendrerit. Quisque blandit nisl dui. Aliquam bibendum in sapien vitae feugiat. Donec a pulvinar enim. Pellentesque pulvinar, nulla eget euismod aliquet, nunc massa cursus tortor, at euismod lacus odio a nibh. Nam quis justo consequat, placerat mi ut, tincidunt ante. Fusce semper euismod libero, et mollis massa pulvinar id. Morbi congue faucibus justo. Integer quam erat, rhoncus et lacus sit amet, tristique congue libero. Vestibulum nec orci cursus, bibendum neque a, tincidunt sem. Sed rutrum quam sed augue luctus pellentesque.
+
+					Etiam commodo quam sed eros bibendum imperdiet. Phasellus at efficitur tortor, vulputate sodales leo. Nulla aliquet quam diam, laoreet maximus ex mattis auctor. Mauris vel felis finibus, malesuada mi fermentum, vehicula eros. Pellentesque malesuada consequat orci ac rhoncus. Morbi ultrices porta metus ac convallis. Maecenas ipsum lectus, imperdiet quis tortor ac, ornare auctor sapien. Proin aliquam est et nulla consectetur auctor. Curabitur vehicula cursus mi. Nulla lacinia molestie quam vel blandit.
+
+					In consequat tincidunt orci, eget bibendum tellus congue ac. Phasellus ac dapibus erat. Donec vitae lacus sit amet ex rhoncus ornare et vel lectus. Nulla efficitur, sapien eu pretium aliquet, magna libero consequat sapien, eget posuere dolor felis nec nibh. Donec varius quis tellus non aliquet. Duis tortor nisi, lobortis et iaculis vitae, ornare ut turpis. Mauris lectus quam, gravida vitae sem id, vestibulum rhoncus risus. In vel volutpat justo, eget feugiat orci. Sed tempor urna in mauris ornare mollis. Proin quis ex dignissim, lobortis sapien sit amet, placerat ex. Morbi vitae lectus sapien. Duis vel tempus ante.
+					</span>
+				</div>
+			</span>
+			
+		</div>
+	</div>
+</body>
+
+</html>

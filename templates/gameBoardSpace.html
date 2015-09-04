@@ -1,0 +1,8 @@
+<div ng-class="{'space': isValid == 1, 'invalidSpace': isValid == 0}">
+	<span ng-if="board[square*9+index][1]">
+		<input class = "spaceValue" type="text" pattern="\d" maxlength="1"  ng-model="board[square*9 + index][0]" ng-blur="$parent.isValid = validateValue(index, square)" >
+	</span>
+	<span ng-if="!board[square*9+index][1]">
+		<input class = "spaceValue given" type="text" pattern="\d*" maxlength="1"  ng-model="board[square*9 + index][0]" readonly>
+	</span>
+</div>

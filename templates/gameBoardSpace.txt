@@ -1,0 +1,3 @@
+<div class="space" ng-model="board[0]">
+
+</div>
