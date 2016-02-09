@@ -1,2 +1,1 @@
-Name: Friendoku
-Layout: Three Square Layout (because I'm basic AF)
+I still need to refactor a lot of this. :/
